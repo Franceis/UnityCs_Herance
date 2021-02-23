@@ -2,20 +2,23 @@
 
 public class Player : MonoBehaviour
 {
-    public float life;
-    private float maxLife;
+    private float life;
+    protected float maxLife;
 
     private float spBar;
-    private float spBarMax;
+    protected float maxSpBar;
 
-    private float damage;
-    private float defense;
+    protected float damage;
+    protected float defense;
 
-    bool canAttack = true;
+    private Rigidbody2D rb;
 
     public virtual void Start()
     {
-
+        if (rb == null) { rb = this.GetComponent<Rigidbody2D>(); }
+        
+        life = maxLife;
+        spBar = maxSpBar;
     }
 
     public virtual void Update()
@@ -25,7 +28,7 @@ public class Player : MonoBehaviour
             Attack();
         }
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(1))
         {
             Block();
         }
@@ -34,10 +37,12 @@ public class Player : MonoBehaviour
     private void Attack()
     {
         //Attack animation
+        print("Attack!");
     }
 
     private void Block()
     {
         //Block animation
+        print("Block!");
     }
 }
